@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dashed_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/bracelet_whilte_bg"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="20.0dip" >
+
+        <TextView
+            android:id="@+id/info_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4.0dip"
+            android:layout_marginTop="8.0dip"
+            android:singleLine="true"
+            android:text="请选择您的充值金额"
+            android:textColor="@color/yellow_title"
+            android:textSize="@dimen/m00_font_size_24pt" />
+    </LinearLayout>
+
+    <com.mx.demo.view.MoneyGridView
+        android:id="@+id/amountGridView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30.0dip"
+        android:horizontalSpacing="5dp"
+        android:listSelector="@drawable/rmb_passwed"
+        android:numColumns="4"
+        android:verticalSpacing="5dp" >
+    </com.mx.demo.view.MoneyGridView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal" >
+
+        <Button
+            android:id="@+id/chargeBtn"
+            style="@style/text_darkShadow8"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10.0dip"
+            android:layout_marginLeft="20.0dip"
+            android:layout_marginRight="20.0dip"
+            android:layout_marginTop="30.0dip"
+            android:background="@drawable/bracelet_unbound_btn"
+            android:text="@string/bracelet_load"
+            android:textColor="@color/white"
+            android:textSize="@dimen/m00_font_size_30pt" />
+    </LinearLayout>
+
+</LinearLayout>

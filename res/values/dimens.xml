@@ -1,0 +1,78 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="shadow_width">15dp</dimen>
+    <dimen name="slidingmenu_offset">80dp</dimen>
+    <dimen name="indicator_right_padding">10.0dip</dimen>
+    <dimen name="indicator_corner_radius">12.0dip</dimen>
+    <dimen name="indicator_internal_padding">4.0dip</dimen>
+    <dimen name="header_footer_left_right_padding">24.0dip</dimen>
+    <dimen name="header_footer_top_bottom_padding">12.0dip</dimen>
+    <dimen name="first_day_margin">10.0dip</dimen>
+    <dimen name="day_margin">24.0dip</dimen>
+    <dimen name="text_height_width">30.0dip</dimen>
+    <dimen name="min_cell_height">50.0dip</dimen>
+    <dimen name="min_cell_width">50.0dip</dimen>
+    <dimen name="margin_tiny">4.0dip</dimen>
+    <dimen name="margin_small">8.0dip</dimen>
+    <dimen name="margin_medium">16.0dip</dimen>
+    <dimen name="margin_large">32.0dip</dimen>
+    <dimen name="margin_huge">64.0dip</dimen>
+
+    <item name="horizontal_page_margin" type="dimen">@dimen/margin_medium</item>
+    <item name="vertical_page_margin" type="dimen">@dimen/margin_medium</item>
+
+    <dimen name="common_title_height">51.0dip</dimen>
+    <dimen name="layout_corner">7.0dip</dimen>
+    <dimen name="gd_arrow_offset">5.0dip</dimen>
+    <dimen name="m00_font_size_64pt">42.69998sp</dimen>
+    <dimen name="m00_font_size_36pt">24.0sp</dimen>
+    <dimen name="m00_font_size_30pt">20.0sp</dimen>
+    <dimen name="m00_font_size_28pt">18.699982sp</dimen>
+    <dimen name="m00_font_size_26pt">17.299988sp</dimen>
+    <dimen name="m00_font_size_24pt">16.0sp</dimen>
+    <dimen name="m00_font_size_22pt">14.699982sp</dimen>
+    <dimen name="m00_font_size_20pt">13.299988sp</dimen>
+    <dimen name="m00_font_size_18pt">12.0sp</dimen>
+    <dimen name="m00_font_size_16pt">10.699982sp</dimen>
+    <dimen name="m00_font_size_15pt">10.0sp</dimen>
+    <dimen name="m00_font_size_14pt">9.299988sp</dimen>
+    <dimen name="m00_main_padding_length">6.6999817dip</dimen>
+    <dimen name="m00_main_list_item_divider_height">6.6999817dip</dimen>
+    <dimen name="m00_home_tab_height">40.69998dip</dimen>
+    <dimen name="m00_home_tab_arrow_margin_bottom">2.0dip</dimen>
+    <dimen name="m00_category_tab_height">40.69998dip</dimen>
+    <dimen name="m00_home_tab_sep_height">30.0dip</dimen>
+    <dimen name="m00_home_tab_sep_margin_bottom">2.0dip</dimen>
+    <dimen name="m00_home_featured_icon_height">100.0dip</dimen>
+    <dimen name="m00_home_featured_content_height">26.0dip</dimen>
+    <dimen name="m00_btn_load_20_more_margin">15.0dip</dimen>
+    <dimen name="m00_btn_load_20_more_padding">3.0dip</dimen>
+    <dimen name="m03_search_hotword_list_item_height">43.299988dip</dimen>
+    <dimen name="m01_arrow_length">25.0dip</dimen>
+    <dimen name="m00_bottom_menu_height">55.5dip</dimen>
+    <dimen name="m00_title_bar_height">76.69998dip</dimen>
+    <dimen name="m06_screen_shot_width">148.0dip</dimen>
+    <dimen name="m06_screen_shot_item_width">133.29999dip</dimen>
+    <dimen name="m06_screen_shot_item_left_width">14.699982dip</dimen>
+    <dimen name="m06_screen_shot_height">218.69998dip</dimen>
+    <dimen name="m06_app_slider_width">80.0dip</dimen>
+    <dimen name="m06_screen_shot_view_padding_width">5.0dip</dimen>
+    <dimen name="m06_descript_title_height">34.69998dip</dimen>
+    <dimen name="m06_descript_sub_view_height">130.0dip</dimen>
+    <dimen name="m06_screen_shot_view_height">294.6953dip</dimen>
+    <dimen name="m06_relevant_view_height">110.0dip</dimen>
+    <dimen name="m06_comment_height">270.0dip</dimen>
+    <dimen name="m06_btn_leave_comment_height">44.0dip</dimen>
+    <dimen name="m06_comment_list_item_height">65.0dip</dimen>
+    <dimen name="m06_load_more_height">58.0dip</dimen>
+    <dimen name="m06_load_data_failed_height">300.0dip</dimen>
+    <dimen name="m06_price_max_width">40.0dip</dimen>
+    <dimen name="m06_confirmation_dialog_width">220.0dip</dimen>
+    <dimen name="m06_radio_button_padding">18.0dip</dimen>
+    <dimen name="m00_alert_dialog_min_width">300.0dip</dimen>
+    <dimen name="m06_credit_card_cvv_margin">78.0dip</dimen>
+
+</resources>

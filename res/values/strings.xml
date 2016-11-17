@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">忞鑫智能</string>
+    <string name="action_settings">Settings</string>
+    <string name="device">腕上设备</string>
+    <string name="pboc">腕上金融卡</string>
+    <string name="edep">腕上交通卡</string>
+    <string name="settings">系统设置</string>
+    <string name="charge">充值</string>
+    <string name="blelist">蓝牙设备列表</string>
+    <string name="bracelet_owner">" 的智能手环"</string>
+    <string name="bracelet_owner_bound">" 的智能手环尚未绑定。"</string>
+    <string name="bracelet_sync_time">Last sync time</string>
+    <string name="bracelet_bound">设备绑定</string>
+    <string name="bracelet_unbound">设备解绑</string>
+    <string name="bracelet_refresh">刷新列表</string>
+    <string name="bracelet_read">读取信息</string>
+    <string name="bracelet_load">充&#160;&#160;&#160;&#160;值</string>
+    <string name="bracelet_update">固件升级</string>
+    <string name="bracelet_nfc_method">当前模式为NFC读卡模式，如需使用蓝牙模式，请点击更改。</string>
+    <string name="bracelet_set_method">更改模式</string>
+    <string name="title_alert">提示信息</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+
+</resources>

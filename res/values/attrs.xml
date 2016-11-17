@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+    <declare-styleable name="SwitchButton">
+        <attr name="frameDrawable" format="reference|color" />
+        <attr name="stateDrawable" format="reference|color" />
+        <attr name="stateMaskDrawable" format="reference|color" />
+        <attr name="sliderDrawable" format="reference|color" />
+        <attr name="withTextInterval" format="dimension" />
+    </declare-styleable>
+
+    <!-- These top three attributes are not accessible to library users -->
+    <attr name="md_divider" format="color" />
+
+</resources>
