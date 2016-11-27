@@ -109,7 +109,7 @@ public class chargeFragment extends Fragment {
 
 				final String amount = chargeAmountString;
 				final String deviceId = "12345678";
-				final String userId = "8888888";
+				final String userId = "88888888";
 
 				Bundle args = new Bundle();
 				args.putString(data.getProgress().msg, "申请订单");
@@ -188,6 +188,31 @@ public class chargeFragment extends Fragment {
 
 																MXLog.i(TAG, result.toString());
 
+																if (0 == result.getResultCode()) {
+																	getActivity().runOnUiThread(new Runnable() {
+
+																		@Override
+																		public void run() {
+																			Toast.makeText(
+																					getActivity()
+																							.getApplicationContext(),
+																					"充值成功", Toast.LENGTH_LONG).show();
+																		}
+																	});
+																}
+																else {
+																	final String msg = result.getErrInfo();
+																	getActivity().runOnUiThread(new Runnable() {
+
+																		@Override
+																		public void run() {
+																			Toast.makeText(
+																					getActivity()
+																							.getApplicationContext(),
+																					msg, Toast.LENGTH_LONG).show();
+																		}
+																	});
+																}
 															}
 
 															@Override

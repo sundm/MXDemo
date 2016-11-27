@@ -19,7 +19,9 @@ public class LeftFragment extends Fragment implements OnClickListener {
 	private TextView edepTextView;
 	private TextView settingsTextView;
 
-	private Fragment deviceFragment;
+	private Fragment nfcDeviceFragment;
+	private Fragment unbondDeviceFragment;
+	private Fragment bondDeviceFragment;
 	private Fragment pbocFragment;
 	private Fragment edepFragment;
 	private Fragment settingFragment;
@@ -53,7 +55,7 @@ public class LeftFragment extends Fragment implements OnClickListener {
 		edepTextView.setOnClickListener(this);
 		settingsTextView.setOnClickListener(this);
 
-		deviceTextView.setText(deviceTextView.getText() + "——未连接");
+		deviceTextView.setText(deviceTextView.getText());
 	}
 
 	@Override
@@ -71,11 +73,29 @@ public class LeftFragment extends Fragment implements OnClickListener {
 		String title = null;
 		switch (v.getId()) {
 		case R.id.tvDevice: {
-			if (deviceFragment == null) {
-				deviceFragment = new deviceFragment();
-			}
+			final GlobalData data = GlobalData.getInstance(getActivity().getApplicationContext());
 			title = getString(R.string.device);
-			switchFragment(deviceFragment, title);
+
+			if (data.isNFCMethod()) {
+				if (nfcDeviceFragment == null) {
+					nfcDeviceFragment = new NFCDeviceFragment();
+				}
+
+				switchFragment(nfcDeviceFragment, title);
+			} else if (!data.isBound()) {
+				if (unbondDeviceFragment == null) {
+					unbondDeviceFragment = new UnBondDeviceFragment();
+				}
+
+				switchFragment(unbondDeviceFragment, title);
+			} else {
+				if (bondDeviceFragment == null) {
+					bondDeviceFragment = new BondDeviceFragment();
+				}
+
+				switchFragment(bondDeviceFragment, title);
+			}
+
 			break;
 		}
 		case R.id.tvPboc: {

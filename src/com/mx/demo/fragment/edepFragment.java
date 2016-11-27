@@ -1,6 +1,5 @@
 package com.mx.demo.fragment;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mx.cttic.card.CtticCard;
 import com.mx.cttic.card.CtticCard.DeviceType;
@@ -134,7 +134,17 @@ public class edepFragment extends Fragment {
 							// TODO Auto-generated method stub
 							MXLog.i(TAG, "code is " + code);
 							if (code != 0) {
+								data.getProgress().dismiss();
+								getActivity().runOnUiThread(new Runnable() {
 
+									@Override
+									public void run() {
+										Toast.makeText(
+												getActivity()
+														.getApplicationContext(),
+												"查询失败请重试", Toast.LENGTH_LONG).show();
+									}
+								});
 							} else {
 								MXLog.i(TAG, ctticCardInfo.toString());
 
@@ -189,7 +199,7 @@ public class edepFragment extends Fragment {
 	@Override
 	public void onStart() {
 		super.onStart();
-		// 娉ㄥ�����bus浜�浠舵�荤嚎涓�
+
 		MXLog.i(TAG, "=AppBus= register");
 		AppBus.getInstance().register(this);
 	}
@@ -219,8 +229,10 @@ public class edepFragment extends Fragment {
 	@Subscribe
 	public void setContent(CtticCardInfo cardInfo) {
 		MXLog.i(TAG, cardInfo.toString());
+		
 		logList.clear();
 		panString = cardInfo.getCardId();
+		typeString = cardInfo.getType();
 		panTextView.setText(panString);
 		amountString = MXBaseUtil.stringMoneyTrans(cardInfo.getUseBalance(), 16);
 		balanceTextView.setText(amountString);

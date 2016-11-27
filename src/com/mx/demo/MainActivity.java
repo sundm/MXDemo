@@ -9,6 +9,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
@@ -23,8 +24,10 @@ import com.mx.cttic.load.CtticLoad;
 import com.mx.cttic.load.CtticLoad.MXLoadCallBack;
 import com.mx.data.AppBus;
 import com.mx.demo.GlobalData.action;
+import com.mx.demo.fragment.BondDeviceFragment;
 import com.mx.demo.fragment.LeftFragment;
-import com.mx.demo.fragment.deviceFragment;
+import com.mx.demo.fragment.NFCDeviceFragment;
+import com.mx.demo.fragment.UnBondDeviceFragment;
 import com.mx.nfclib.NFCReader;
 import com.mx.util.MXLog;
 import com.mx.util.PayOrder;
@@ -38,7 +41,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		requestWindowFeature(Window.FEATURE_NO_TITLE); // ������棰�
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		initSlidingMenu(savedInstanceState);
@@ -48,41 +51,41 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		topTextView = (TextView) findViewById(R.id.topTv);
 	}
 
-	/**
-	 * ���濮����渚ц竟���
-	 */
 	private void initSlidingMenu(Bundle savedInstanceState) {
 
 		if (savedInstanceState != null) {
 			mContent = getFragmentManager().getFragment(savedInstanceState, "mContent");
 		}
 
-		if (mContent == null) {
-			mContent = new deviceFragment();
+		final GlobalData data = GlobalData.getInstance(this.getApplicationContext());
+		if (data.isNFCMethod()) {
+			if (mContent == null) {
+				mContent = new NFCDeviceFragment();
+			}
+		} else if (!data.isBound()) {
+			if (mContent == null) {
+				mContent = new UnBondDeviceFragment();
+			}
+		} else {
+			if (mContent == null) {
+				mContent = new BondDeviceFragment();
+			}
 		}
 
 		getFragmentManager().beginTransaction().replace(R.id.content_frame, mContent).commit();
 		getSlidingMenu().showContent();
 
-		// 璁剧疆宸�渚ф����ㄨ�����
 		setBehindContentView(R.layout.menu_frame_left);
 		getFragmentManager().beginTransaction().replace(R.id.menu_frame, new LeftFragment()).commit();
 
-		// 瀹�渚����婊���ㄨ�����瀵硅薄
 		SlidingMenu sm = getSlidingMenu();
-		// 璁剧疆���浠ュ乏��虫����ㄧ��������
+
 		sm.setMode(SlidingMenu.LEFT);
-		// 璁剧疆婊���ㄩ�村奖���瀹藉害
 		sm.setShadowWidthRes(R.dimen.shadow_width);
-		// 璁剧疆婊���ㄨ�������村奖�����惧��璧�婧�
 		sm.setShadowDrawable(null);
-		// 璁剧疆婊���ㄨ�����瑙���剧��瀹藉害
 		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-		// 璁剧疆娓���ユ����烘�����������
 		sm.setFadeDegree(0.35f);
-		// 璁剧疆瑙���稿��骞����妯″��,杩����璁剧疆涓哄�ㄥ��
 		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-		// 璁剧疆涓���硅����剧����ㄦ����ㄦ�剁��缂╂�炬��渚�
 		sm.setBehindScrollScale(0.0f);
 
 	}
@@ -93,11 +96,6 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 		getFragmentManager().putFragment(outState, "mContent", mContent);
 	}
 
-	/**
-	 * ������Fragment
-	 * 
-	 * @param fragment
-	 */
 	public void switchConent(Fragment fragment, String title) {
 		mContent = fragment;
 		getFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commit();
@@ -171,7 +169,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 						// TODO Auto-generated method stub
 						MXLog.i(TAG, "code is " + code);
 						if (code != 0) {
-
+							
 						} else {
 							MXLog.i(TAG, ctticCardInfo.toString());
 
@@ -194,7 +192,7 @@ public class MainActivity extends SlidingFragmentActivity implements OnClickList
 			} else if (data.getCurrent_action() == action.LOAD_EDEP) {
 
 				PayOrder order = data.getOrder();
-				CtticLoad.getInstance().doCtticLoad(order, DeviceType.NFC, CtticLoad.LOAD_TYPE.INTERFLOW,
+				CtticLoad.getInstance().doCtticLoad(order, DeviceType.NFC, CtticLoad.LOAD_TYPE.LOCAL,
 						new MXLoadCallBack() {
 
 							@Override

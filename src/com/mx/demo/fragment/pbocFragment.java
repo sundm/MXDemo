@@ -17,7 +17,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.mx.cttic.card.CtticCard;
+import com.mx.cttic.card.CtticCard.DeviceType;
+import com.mx.cttic.card.CtticCard.QueryPbocCardCallBack;
+import com.mx.cttic.card.CtticCardInfo;
 import com.mx.cttic.card.PbocCardInfo;
 import com.mx.data.AppBus;
 import com.mx.demo.GlobalData;
@@ -102,6 +107,54 @@ public class pbocFragment extends Fragment {
 
 				} else {
 
+					Bundle args = new Bundle();
+					args.putString(data.getProgress().msg, "蓝牙通讯中");
+
+					data.getProgress().setArguments(args);
+					data.getProgress().show(getFragmentManager(), "progressDialog");
+					
+					CtticCard.getInstance(DeviceType.BLE).registerCtticReader(data.getgBleReader());
+					
+					CtticCard.getInstance(DeviceType.BLE).requestQueryPbocCard(new QueryPbocCardCallBack() {
+						
+						@Override
+						public void onReceiveQueryPBCard(int code, PbocCardInfo pbCardInfo) {
+							// TODO Auto-generated method stub
+
+							// TODO Auto-generated method stub
+							MXLog.i(TAG, "code is " + code);
+							if (code != 0) {
+								data.getProgress().dismiss();
+								getActivity().runOnUiThread(new Runnable() {
+
+									@Override
+									public void run() {
+										Toast.makeText(
+												getActivity()
+														.getApplicationContext(),
+												"查询失败请重试", Toast.LENGTH_LONG).show();
+									}
+								});
+							} else {
+								MXLog.i(TAG, pbCardInfo.toString());
+
+								final PbocCardInfo info = pbCardInfo;
+
+								Thread thread = new Thread(new Runnable() {
+									@Override
+									public void run() {
+										SystemClock.sleep(500);
+										AppBus.getInstance().post(info);
+									}
+								});
+								thread.start();
+
+							}
+
+						
+						}
+					});
+				
 				}
 			}
 		});
@@ -137,7 +190,6 @@ public class pbocFragment extends Fragment {
 	@Override
 	public void onStart() {
 		super.onStart();
-		// 娉ㄥ�����bus浜�浠舵�荤嚎涓�
 		MXLog.i(TAG, "=AppBus= register");
 		AppBus.getInstance().register(this);
 	}
@@ -172,6 +224,7 @@ public class pbocFragment extends Fragment {
 		panTextView.setText(panString);
 		amountString = MXBaseUtil.stringMoneyTrans(cardInfo.getBalance(), 10);
 		balanceTextView.setText(amountString);
+		typeString = "电子钱包";
 		typeTextView.setText(typeString);
 
 		List<Map<String, String>> list = cardInfo.getListCardECRecords();
@@ -200,11 +253,11 @@ public class pbocFragment extends Fragment {
 			info.amountString = amountString;
 			String typeString = iteMap.containsKey("9C") ? iteMap.get("9C") : "";
 			if (typeString.equals("60")) {
-				info.typeString = "���瀛�";
+				info.typeString = "圈存";
 			} else if (typeString.equals("00")) {
-				info.typeString = "娑�璐�";
+				info.typeString = "消费";
 			} else {
-				info.typeString = "��朵��";
+				info.typeString = "未知";
 			}
 
 			logList.add(info);
